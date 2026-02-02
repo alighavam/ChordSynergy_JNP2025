@@ -160,14 +160,12 @@ switch (what)
         fprintf('chord %d success rate, day 1 =  %.2f, %.2f\n',chord(b(1)),mean_succ*100,sem_succ*100);
     
     case 'chord_force_trace_examples' % Fig. 2B
-        
         % force traces examples
         chordID = generateAllChords;
         data = dload(fullfile(project_path,'analysis','efc1_chord.tsv'));
         subj_unique = unique(data.sn);
-        % choosing a random chord and subject:
-        chord = chordID(randi(length(chordID)));
-        sn = subj_unique(randi(length(subj_unique)));
+        chord = 92212;
+        sn = 4;
         vararginoptions(varargin,{'chord','sn'})
         fprintf('\nplotting for subj %d\n',sn)
 

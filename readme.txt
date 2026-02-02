@@ -21,7 +21,11 @@ mkdir ~/Desktop/Projects/ChordSynergy_JNP2025/data
 mkdir ~/Desktop/Projects/ChordSynergy_JNP2025/figures
 
 Then place these files into /analysis:
-ALI NEEDS TO COMPLETE THIS PART
+////efc1_all.tsv
+////efc1_chord.tsv
+efc1_subj04_raw.tsv (you can select any subjects to plot but I randomly selected this guy)
+efc1_subj04_mov.mat (same here)
+
 
 2) Add the ~/Desktop/Projects/ChordSynergy_JNP2025/functions to your MATLAB path. These are my functions. 
 Clone and addpath the MATLAB dataframe toolbox: https://github.com/jdiedrichsen/dataframe/tree/master
