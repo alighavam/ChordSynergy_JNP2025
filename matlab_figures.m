@@ -5,7 +5,7 @@ addpath('functions/')
 % setting paths:
 usr_path = userpath;
 usr_path = usr_path(1:end-17);
-project_path = fullfile(usr_path, 'Desktop', 'Projects', 'EFC1');
+project_path = fullfile(usr_path, 'Desktop', 'Projects', 'ChordSynergy_JNP2025');
 
 % colors:
 colors_red = [[255, 219, 219] ; [255, 146, 146] ; [255, 73, 73] ; [255, 0, 0] ; [182, 0, 0]]/255;
@@ -45,7 +45,6 @@ paper.bar_width = 1;
 
 switch (what)
     case 'success_rate' % Fig. 2A 
-        
         data = dload(fullfile(project_path, 'analysis', 'efc1_chord.tsv'));
         % avg success rate of chords from day 1 to 4:
         [~, ~, succ, chords, sn] = get_sem(data.accuracy,data.sn,ones(size(data.sn)),data.chordID);

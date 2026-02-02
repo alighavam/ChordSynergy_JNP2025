@@ -1,1 +1,5 @@
 .DS_Store
+/figures
+/analysis
+/__pycache__
+*.pyc
