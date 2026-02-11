@@ -39,8 +39,8 @@ In summary you need to 1) create a project directory and place datasets into app
 1) Make a directory just like described above for running the MATLAB code.
 
 Place these files into /analysis:
-//////////experiment2_all.csv
-//////////experiment2_111_mov.pkl
+//////////efc2_all.csv
+//////////efc2_111_mov.pkl
 
 2) Install the required tools: 'pip install pandas seaborn statsmodels'
 

@@ -8,7 +8,7 @@ usr_path = usr_path(1:end-17);
 % project_path = fullfile(usr_path, 'Desktop', 'Projects', 'ChordSynergy_JNP2025');
 % server path:
 project_path = fullfile('/Volumes', 'Diedrichsen_data$', 'data', 'Chord_exp', 'ChordSynergy_JNP2025'); 
-
+'/Volumes/Diedrichsen_data$/data/Chord_exp/ChordSynergy_JNP2025'
 % colors:
 colors_red = [[255, 219, 219] ; [255, 146, 146] ; [255, 73, 73] ; [255, 0, 0] ; [182, 0, 0]]/255;
 colors_gray = ['#d3d3d3' ; '#b9b9b9' ; '#868686' ; '#6d6d6d' ; '#535353'];
@@ -162,7 +162,6 @@ switch (what)
         fprintf('chord %d success rate, day 1 =  %.2f, %.2f\n',chord(b(1)),mean_succ*100,sem_succ*100);
     
     case 'chord_force_trace_examples' % Fig. 2B
-        % loads raw data so might take longer to run
         % force traces examples
         chordID = generateAllChords;
         data = dload(fullfile(project_path,'analysis','efc1_chord.tsv'));

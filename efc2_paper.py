@@ -21,15 +21,15 @@ def learning_figure(measure='MD', fig_size=[8.2, 6], show_plot=False):
     '''
     Performance improvement over days with BNs separate.
     '''
-
-    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'experiment2_all.csv'))
-
+    
+    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'efc2_all.csv'))
+    
     # make summary dataframe:
     df.replace(-1, np.nan, inplace=True)
     ANA = pd.DataFrame()
     ANA = df.groupby(['day','sn','trained','BN'])[['is_test','group','RT','ET','MD']].mean().reset_index()
     num_blocks = ANA['BN'].unique().shape[0]
-
+    
     # average across subjects:
     grouped = ANA.groupby(['day', 'trained', 'BN']).agg(
         MD_mean=('MD', 'mean'),
@@ -102,7 +102,7 @@ def learning_figure(measure='MD', fig_size=[8.2, 6], show_plot=False):
 
     ax.tick_params(axis='both', labelsize=my_paper['tick_fontsize'])
 
-    fig.savefig(os.path.join(FIGURE_PATH,'experiment2_learning_'+measure+'.pdf'), format='pdf', bbox_inches='tight')
+    fig.savefig(os.path.join(FIGURE_PATH,'efc2_learning_'+measure+'.pdf'), format='pdf', bbox_inches='tight')
     
     if show_plot:
         plt.show()
@@ -168,7 +168,7 @@ def learning_figure(measure='MD', fig_size=[8.2, 6], show_plot=False):
     print(f't_{len(day1)-1} = {res.statistic:.4f}, p = {res.pvalue:.16e}')
 
 def specific_vs_general(measure='MD', fig_size=[8.2, 6], show_plot=False, plot_type='box'):
-    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'experiment2_all.csv'))
+    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'efc2_all.csv'))
 
     # make summary dataframe:
     df.replace(-1, np.nan, inplace=True)
@@ -276,7 +276,7 @@ def specific_vs_general(measure='MD', fig_size=[8.2, 6], show_plot=False, plot_t
         plt.close(fig)
     
 def imprv(measure='MD', fig_size=[8.2, 6], show_plot=False):
-    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'experiment2_all.csv'))
+    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'efc2_all.csv'))
 
     # make summary dataframe:
     df.replace(-1, np.nan, inplace=True)
@@ -356,7 +356,7 @@ def imprv(measure='MD', fig_size=[8.2, 6], show_plot=False):
     ax.tick_params(axis='y', direction='in', length=2, width=my_paper['axis_width'])
     ax.tick_params(axis='both', labelsize=my_paper['tick_fontsize'])
 
-    fig.savefig(os.path.join(FIGURE_PATH,'experiment2_imprv_'+measure+'.pdf'), format='pdf', bbox_inches='tight')
+    fig.savefig(os.path.join(FIGURE_PATH,'efc2_imprv_'+measure+'.pdf'), format='pdf', bbox_inches='tight')
     
     if show_plot:
         plt.show()
@@ -384,7 +384,7 @@ def imprv(measure='MD', fig_size=[8.2, 6], show_plot=False):
     print(f'    t_{len(trained_imprv)-1} = {res.statistic:.3f}, p = {res.pvalue:.16e}')
     
 def plot_trial_example(sn=None, chord=None, trial=None, fs=500, t_minus=None, t_max=None, fig_size=[6, 4], days=[1,5], num_trials=3, export_fig=False, xlim=None):
-    df = pd.read_csv(os.path.join(ANALYSIS_PATH, f'experiment2_all.csv'))
+    df = pd.read_csv(os.path.join(ANALYSIS_PATH, f'efc2_all.csv'))
     chords = df['chordID'].unique()
 
     if sn is None:
@@ -397,7 +397,7 @@ def plot_trial_example(sn=None, chord=None, trial=None, fs=500, t_minus=None, t_
     idx = df[(df['chordID']==chord) & (df['trial_correct']==1)].index
     df = df.iloc[idx].reset_index(drop=True)
     trained = df['trained'].iloc[0]
-    mov = pd.read_pickle(os.path.join(ANALYSIS_PATH, f'experiment2_{sn}_mov.pkl'))
+    mov = pd.read_pickle(os.path.join(ANALYSIS_PATH, f'efc2_{sn}_mov.pkl'))
     mov = mov.iloc[idx].reset_index(drop=True)
 
     print(f'subject {sn}, chord {chord}, trained {trained}\n')
@@ -486,7 +486,7 @@ def plot_trial_example(sn=None, chord=None, trial=None, fs=500, t_minus=None, t_
             plt.show()
 
             if export_fig:
-                fig.savefig(os.path.join(FIGURE_PATH, f'experiment2_example_avg_{sn}_{chord}_{day}.pdf'), format='pdf', bbox_inches='tight')
+                fig.savefig(os.path.join(FIGURE_PATH, f'efc2_example_avg_{sn}_{chord}_{day}.pdf'), format='pdf', bbox_inches='tight')
 
     elif trial is None: # choose random trials from each day:
         day1 = df[(df['day']==days[0])].index.to_list()
@@ -614,7 +614,7 @@ def plot_trial_example(sn=None, chord=None, trial=None, fs=500, t_minus=None, t_
             plt.show()
 
             if export_fig:
-                fig.savefig(os.path.join(FIGURE_PATH, f'experiment2_example_{chord}_{trial_idx}.pdf'), format='pdf', bbox_inches='tight')
+                fig.savefig(os.path.join(FIGURE_PATH, f'efc2_example_{chord}_{trial_idx}.pdf'), format='pdf', bbox_inches='tight')
 
     return df, mov
 
@@ -624,7 +624,7 @@ def finger_asynch(fig_size=[6, 5]):
     the last fingers that got activated. The activation time if each finger is defiend as the moment the derivative of the force crosses 20% of its peak. 
     '''
     
-    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'experiment2_all.csv'))
+    df = pd.read_csv(os.path.join(ANALYSIS_PATH, 'efc2_all.csv'))
 
     # get the median asynch:
     ana = df.groupby(['day','sn','chordID','BN','trained']).agg(
